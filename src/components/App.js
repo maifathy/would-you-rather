@@ -24,7 +24,13 @@ class App extends Component {
           <NavMenu />
           <Route path='/login' component={Login} />
           {this.props.loading === true
-            ? <Redirect to='/login' />
+            ? <Redirect
+                to={{
+                  pathname: '/login',
+                  search: '',
+                  state: { referrer: window.location.pathname }
+                }}
+              />
             :
             <div>
               <Route path='/' exact component={Dashboard} />
