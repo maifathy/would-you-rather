@@ -25,10 +25,8 @@ class NewPoll extends Component {
   }
   addQuestion = (e) => {
     e.preventDefault();
-    this.props.dispatch(handleAddQuestion(
-      this.state.optionOne,
-      this.state.optionTwo
-    ))
+    this.props.handleAddQuestion(this.state.optionOne,
+      this.state.optionTwo);
     this.props.history.push('/')
   }
   render(){
@@ -84,4 +82,4 @@ class NewPoll extends Component {
   }
 }
 
-export default withRouter(connect()(NewPoll))
+export default withRouter(connect(null, { handleAddQuestion })(NewPoll));
