@@ -11,8 +11,14 @@ class NavMenu extends Component {
       e.preventDefault()
   }
   logout = () => {
-    this.props.dispatch(removeAuthUser(null))
-    return <Redirect to='/' />
+    this.props.removeAuthUser(null)
+    return <Redirect
+        to={{
+          pathname: '/login',
+          search: '',
+          state: { referrer: window.location.pathname }
+        }}
+      />
   }
 
   componentDidMount(){
@@ -77,4 +83,4 @@ function mapStateToProps({users, authedUser}){
   }
 }
 
-export default withRouter(connect(mapStateToProps)(NavMenu))
+export default withRouter(connect(mapStateToProps, { removeAuthUser })(NavMenu))
