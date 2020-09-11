@@ -15,9 +15,10 @@ class Login extends Component{
 
   doLogin = (e) => {
     const authedUser = e.target.id
+    const { receiveAuthUser, location, history } = this.props
 
-    this.props.dispatch(receiveAuthUser(authedUser))
-    this.props.history.push('/')
+    receiveAuthUser(authedUser)
+    history.push(location.state.referrer)
   }
   render(){
     return(
@@ -62,4 +63,4 @@ function mapStateToProps({ users, authedUser }){
     users
   }
 }
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, { receiveAuthUser })(Login)
